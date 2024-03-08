@@ -23,7 +23,6 @@ import (
 	"github.com/go-kit/log"
 	"github.com/go-kit/log/level"
 	"github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/client_golang/prometheus/collectors"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/prometheus/common/promlog"
 	"github.com/prometheus/common/promlog/flag"
@@ -161,10 +160,10 @@ func main() {
 	}
 
 	reg := prometheus.NewPedanticRegistry()
-	reg.MustRegister(
-		collectors.NewProcessCollector(collectors.ProcessCollectorOpts{}),
-		collectors.NewGoCollector(),
-	)
+	// reg.MustRegister(
+	// 	collectors.NewProcessCollector(collectors.ProcessCollectorOpts{}),
+	// 	collectors.NewGoCollector(),
+	// )
 
 	prometheus.WrapRegistererWithPrefix("", reg).MustRegister(&collector)
 
